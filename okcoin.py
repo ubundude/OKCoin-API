@@ -49,9 +49,10 @@ class MarketData(object):
         data = self.get_json(depth_url,params)
         return( DepthObject(data) )
 
-    def get_history(self, symbol, since):
+    def get_history(self, symbol, since=None):
         params = {'symbol': symbol}
-        params = {'since': since}
+        if since is not None:
+            params = {'since': since}
         if symbol == 'btc_usd' or symbol == 'ltc_usd':
             params['ok'] = 1
         history_url = 'https://www.okcoin.com/api/trades.do'
